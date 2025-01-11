@@ -64,5 +64,16 @@ class YourFrameworkAdapter(ToolAdapter):
         # if your framework supports async function even better use async_adapt.
 ```
 
+## Roadmap
+
+- [x] initial framework for anyone to start creating adapters
+- [x] support for smolagents
+- [ ] support for pydantic-ai
+- [ ] support for langchain
+- [ ] support for llamaindex
+- [ ] support for swarm
+- [ ] support for crewAI?
+- [ ] support for remote MCP Servers via SSE  
+
 2. and that's it, test that your adapter is working and send us a PR to share it with the world.
 
