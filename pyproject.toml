@@ -1,0 +1,18 @@
+[project]
+name = "mcpadapt"
+dynamic = ["version"]
+description = "Adapt MCP servers to many agentic framework."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "anyio>=4.8.0",
+    "mcp>=1.2.0",
+    "smolagents>=1.2.2",
+]
+
+[tool.hatch.version]
+path = "src/mcpadapt/__init__.py"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
