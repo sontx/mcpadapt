@@ -43,7 +43,7 @@ class YourFrameworkAdapter(ToolAdapter):
         func: Callable[[dict | None], mcp.types.CallToolResult],
         mcp_tool: mcp.types.Tool,
     ) -> YourFramework.Tool:
-        # HERE implement how the adapter should convert a simple function and mcp_tool
+        # HERE implement how the adapter should convert a simple function and mcp_tool (JSON Schema)
         # into your framework tool. see smolagents_adapter.py for an example
     
     def async_adapt(
