@@ -64,6 +64,8 @@ class YourFrameworkAdapter(ToolAdapter):
         # if your framework supports async function even better use async_adapt.
 ```
 
+2. and that's it, test that your adapter is working and send us a PR to share it with the world.
+
 ## Roadmap
 
 - [x] initial framework for anyone to start creating adapters
@@ -74,6 +76,4 @@ class YourFrameworkAdapter(ToolAdapter):
 - [ ] support for swarm
 - [ ] support for crewAI?
 - [ ] support for remote MCP Servers via SSE  
-
-2. and that's it, test that your adapter is working and send us a PR to share it with the world.
 
