@@ -5,7 +5,9 @@ from functools import wraps
 from typing import Any, Callable, Coroutine
 
 
-def async_to_sync(async_func: Callable[..., Coroutine[Any, Any, Any]]) -> Callable[..., Any]:
+def async_to_sync(
+    async_func: Callable[..., Coroutine[Any, Any, Any]],
+) -> Callable[..., Any]:
     """Convert an async function to a sync function in an async context.
 
     This is usually not recommended, but tools are expected to be synchronous for
@@ -13,6 +15,7 @@ def async_to_sync(async_func: Callable[..., Coroutine[Any, Any, Any]]) -> Callab
 
     This is done by using a separate thread to avoid blocking the asyncio event loop.
     """
+
     @wraps(async_func)
     def sync_wrapper(*args, **kwargs):
         result = None
@@ -36,17 +39,20 @@ def async_to_sync(async_func: Callable[..., Coroutine[Any, Any, Any]]) -> Callab
         if error:
             raise error
         return result
+
     return sync_wrapper
 
 
 if __name__ == "__main__":
+
     @asynccontextmanager
     async def some_function():
         async def call_tool(a):
             await asyncio.sleep(10)
             return a
+
         yield call_tool
-    
+
     async def main():
         async with some_function() as call_tool:
             response = async_to_sync(call_tool)(1)

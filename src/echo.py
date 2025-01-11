@@ -11,7 +11,7 @@ mcp = FastMCP("Echo Server")
 @mcp.tool()
 def echo_tool(text: str) -> str:
     """Echo the input text
-    
+
     Args:
         text (str): The text to echo
 
