@@ -30,6 +30,8 @@ with MCPAdapt(
 
 MCP Adapt supports Smolagents, [Pydantic.dev, Langchain, Llammaindex and more...]*.
 
+*coming soon.
+
 ## Contribute
 
 If your favorite agentic framework is missing no problem add it yourself it's quite easy:
