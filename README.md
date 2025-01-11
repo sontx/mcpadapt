@@ -8,7 +8,7 @@ Since it's release more than 650 MCP servers have been created giving access to 
 
 This project makes calling any MCP servers tools seemless from any agentic framework. Virtually providing your agentic worfklow access to 650+ MCP servers tools.
 
-Look at https://glama.ai or https://smithery.ai/ to give you an idea of what your agent could access.
+Look at [glama.ai](https://glama.ai/mcp/servers) or [smithery.ai](https://smithery.ai/) to give you an idea of what your agent could access.
 
 ## Installation Instructions
 
