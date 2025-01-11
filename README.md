@@ -2,6 +2,14 @@
 
 Unlock 650+ MCP servers tools in your favorite agentic framework.
 
+Model Context Protocol is an open-source protocol introduced by Anthropic which allows anyone to simply and quickly make tools and resources available as "MCP Servers".
+
+Since it's release more than 650 MCP servers have been created giving access to many data & tools to supported "MCP Client".
+
+This project makes calling any MCP servers tools seemless from any agentic framework. Virtually providing your agentic worfklow access to 650+ MCP servers tools.
+
+Look at https://glama.ai or https://smithery.ai/ to give you an idea of what your agent could access.
+
 ## Installation Instructions
 
 ```bash
