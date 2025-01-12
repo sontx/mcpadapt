@@ -901,6 +901,7 @@ source = { editable = "." }
 dependencies = [
     { name = "jsonref" },
     { name = "mcp" },
+    { name = "python-dotenv" },
 ]
 
 [package.optional-dependencies]
@@ -927,6 +928,7 @@ requires-dist = [
     { name = "langchain-anthropic", marker = "extra == 'langchain'", specifier = ">=0.3.1" },
     { name = "langgraph", marker = "extra == 'langchain'", specifier = ">=0.2.62" },
     { name = "mcp", specifier = ">=1.2.0" },
+    { name = "python-dotenv", specifier = ">=1.0.1" },
     { name = "smolagents", marker = "extra == 'smolagents'", specifier = ">=1.2.2" },
 ]
 
