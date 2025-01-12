@@ -75,5 +75,6 @@ class YourFrameworkAdapter(ToolAdapter):
 - [ ] support for llamaindex
 - [ ] support for swarm
 - [ ] support for crewAI?
-- [ ] support for remote MCP Servers via SSE  
+- [ ] support for remote MCP Servers via SSE
+- [ ] support for jupyter notebook
 
