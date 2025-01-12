@@ -77,4 +77,5 @@ class YourFrameworkAdapter(ToolAdapter):
 - [ ] support for crewAI?
 - [ ] support for remote MCP Servers via SSE
 - [ ] support for jupyter notebook
+- [ ] add tests
 
