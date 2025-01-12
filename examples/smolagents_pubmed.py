@@ -7,7 +7,7 @@ It only provide a single tool to search amongst pubmed papers abstracts.
 import os
 
 from mcp import StdioServerParameters
-from smolagents import CodeAgent, HfApiModel
+# from smolagents import CodeAgent, HfApiModel
 
 from mcpadapt.core import MCPAdapt
 from mcpadapt.smolagents_adapter import SmolAgentsAdapter
@@ -20,6 +20,6 @@ with MCPAdapt(
     ),
     SmolAgentsAdapter(),
 ) as tools:
-    # print(tools[0](request={"term": "efficient treatment for hangover"}))
-    agent = CodeAgent(tools=tools, model=HfApiModel())
-    agent.run("Find studies about hangover?")
+    print(tools[0](request={"term": "efficient treatment hangover"}))
+    # agent = CodeAgent(tools=tools, model=HfApiModel())
+    # agent.run("Find studies about hangover?")
