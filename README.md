@@ -23,7 +23,7 @@ uv add mcpadapt[smolagents]
 pip install mcpadapt[smolagents]
 ```
 
-Framework supported at the moment: smolagents, langchain.
+Framework supported at the moment: smolagents, langchain (soon).
 
 You can also add multiple framework comma separated if need. 
 
