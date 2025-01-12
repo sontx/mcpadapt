@@ -93,6 +93,24 @@ wheels = [
 ]
 
 [[package]]
+name = "anthropic"
+version = "0.42.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+    { name = "distro" },
+    { name = "httpx" },
+    { name = "jiter" },
+    { name = "pydantic" },
+    { name = "sniffio" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e7/7c/91b79f5ae4a52497a4e330d66ea5929aec2878ee2c9f8a998dbe4f4c7f01/anthropic-0.42.0.tar.gz", hash = "sha256:bf8b0ed8c8cb2c2118038f29c58099d2f99f7847296cafdaa853910bfff4edf4", size = 192361 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ba/33/b907a6d27dd0d8d3adb4edb5c9e9c85a189719ec6855051cce3814c8ef13/anthropic-0.42.0-py3-none-any.whl", hash = "sha256:46775f65b723c078a2ac9e9de44a46db5c6a4fabeacfd165e5ea78e6817f4eff", size = 203365 },
+]
+
+[[package]]
 name = "anyio"
 version = "4.8.0"
 source = { registry = "https://pypi.org/simple" }
@@ -239,6 +257,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/d8/53/6f443c9a4a8358a93a6792e2acffb9d9d5cb0a5cfd8802644b7b1c9a02e4/colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44", size = 27697 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6", size = 25335 },
+]
+
+[[package]]
+name = "defusedxml"
+version = "0.7.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/0f/d5/c66da9b79e5bdb124974bfe172b4daf3c984ebd9c2a06e2b8a4dc7331c72/defusedxml-0.7.1.tar.gz", hash = "sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69", size = 75520 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/07/6c/aa3f2f849e01cb6a001cd8554a88d4c77c5c1a31c95bdf1cf9301e6d9ef4/defusedxml-0.7.1-py2.py3-none-any.whl", hash = "sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61", size = 25604 },
 ]
 
 [[package]]
@@ -663,6 +690,21 @@ wheels = [
 ]
 
 [[package]]
+name = "langchain-anthropic"
+version = "0.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anthropic" },
+    { name = "defusedxml" },
+    { name = "langchain-core" },
+    { name = "pydantic" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/93/57/a4cd984afd45a6b7793178db4595914d8625b69382bbe51f18513c19f641/langchain_anthropic-0.3.1.tar.gz", hash = "sha256:4dc1b9a685d6b2a9e55231e4c92248bb7452b7821f6b64a5607737cdf8ba98ef", size = 20805 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/89/73/af53ffcb5262e8d16ca0b0d8b319b542f1cff78ba5ad1049e680bbcc16c8/langchain_anthropic-0.3.1-py3-none-any.whl", hash = "sha256:c95ca2e381798babdb8e55e5ed241342e0ea9bc2f15721cdbace87d23992d29e", size = 22325 },
+]
+
+[[package]]
 name = "langchain-core"
 version = "0.3.29"
 source = { registry = "https://pypi.org/simple" }
@@ -854,19 +896,20 @@ wheels = [
 
 [[package]]
 name = "mcpadapt"
-version = "0.0.3"
+version = "0.0.4"
 source = { editable = "." }
 dependencies = [
+    { name = "jsonref" },
     { name = "mcp" },
 ]
 
 [package.optional-dependencies]
 langchain = [
     { name = "langchain" },
+    { name = "langchain-anthropic" },
     { name = "langgraph" },
 ]
 smolagents = [
-    { name = "jsonref" },
     { name = "smolagents" },
 ]
 
@@ -876,19 +919,12 @@ dev = [
     { name = "pytest" },
     { name = "ruff" },
 ]
-langchain = [
-    { name = "langchain" },
-    { name = "langgraph" },
-]
-smolagents = [
-    { name = "jsonref" },
-    { name = "smolagents" },
-]
 
 [package.metadata]
 requires-dist = [
-    { name = "jsonref", marker = "extra == 'smolagents'", specifier = ">=1.1.0" },
+    { name = "jsonref", specifier = ">=1.1.0" },
     { name = "langchain", marker = "extra == 'langchain'", specifier = ">=0.3.14" },
+    { name = "langchain-anthropic", marker = "extra == 'langchain'", specifier = ">=0.3.1" },
     { name = "langgraph", marker = "extra == 'langchain'", specifier = ">=0.2.62" },
     { name = "mcp", specifier = ">=1.2.0" },
     { name = "smolagents", marker = "extra == 'smolagents'", specifier = ">=1.2.2" },
@@ -899,14 +935,6 @@ dev = [
     { name = "pre-commit", specifier = ">=4.0.1" },
     { name = "pytest", specifier = ">=8.3.4" },
     { name = "ruff", specifier = ">=0.9.1" },
-]
-langchain = [
-    { name = "langchain", specifier = ">=0.3.14" },
-    { name = "langgraph", specifier = ">=0.2.62" },
-]
-smolagents = [
-    { name = "jsonref", specifier = ">=1.1.0" },
-    { name = "smolagents", specifier = ">=1.2.2" },
 ]
 
 [[package]]
