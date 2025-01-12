@@ -12,13 +12,20 @@ Look at [glama.ai](https://glama.ai/mcp/servers) or [smithery.ai](https://smithe
 
 ## Installation Instructions
 
+Each agentic framework has its own set of optional dependencies to not cluter with useless dependencies.
+You choose the flavor you want by adding your framework in brackets in the installation command.
+
 ```bash
 # with uv
-uv add mcpadapt
+uv add mcpadapt[smolagents]
 
 # or with pip
-pip install mcpadapt
+pip install mcpadapt[smolagents]
 ```
+
+Framework supported at the moment: smolagents, langchain.
+
+You can also add multiple framework comma separated if need. 
 
 ## Usage
 
