@@ -5,10 +5,17 @@ description = "Adapt MCP servers to many agentic framework."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "anyio>=4.8.0",
-    "jsonref>=1.1.0",
     "mcp>=1.2.0",
+]
+
+[project.optional-dependencies]
+smolagents = [
+    "jsonref>=1.1.0",
     "smolagents>=1.2.2",
+]
+langchain = [
+    "langchain>=0.3.14",
+    "langgraph>=0.2.62",
 ]
 
 [tool.hatch.version]
