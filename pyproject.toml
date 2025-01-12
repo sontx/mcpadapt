@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "anyio>=4.8.0",
+    "jsonref>=1.1.0",
     "mcp>=1.2.0",
     "smolagents>=1.2.2",
 ]

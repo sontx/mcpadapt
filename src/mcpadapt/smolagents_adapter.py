@@ -10,6 +10,7 @@ Example Usage:
 
 from typing import Callable
 
+import jsonref
 import mcp
 import smolagents
 
@@ -32,31 +33,47 @@ class SmolAgentsAdapter(ToolAdapter):
         func: Callable[[dict | None], mcp.types.CallToolResult],
         mcp_tool: mcp.types.Tool,
     ) -> smolagents.Tool:
-        # because CallToolResult is not usually what we expect we return here the content
-        # of the first message in the content list.
-        def forward(arguments: dict | None) -> str:
-            call_tool_result = func(arguments)
-            return call_tool_result.content[0].text
+        # we have to recreate a good function based on on the input schema because
+        # the smolagents framework is quite picky.
+        json_schema = jsonref.replace_refs(mcp_tool.inputSchema).get("properties", {})
 
-        return type(
-            snake_to_camel(mcp_tool.name),
-            (smolagents.Tool,),
-            {
-                "name": mcp_tool.name,
-                "description": mcp_tool.description,
-                "inputs": {
-                    k: {
-                        "type": v["type"],
-                        # TODO: use google-docstring-parser to parse description of args and pass it here...
-                        # "description": v["description"],
-                    }
-                    for k, v in mcp_tool.inputSchema.get("properties", {}).items()
-                },
-                # TODO: use google-docstring-parser to parse description of return type and pass it here...
-                "output_type": str,
-                "forward": forward,
-            },
-        )
+        # Create class template
+        # TODO: we use **kwargs -> kwargs in the underlying MCP function not sure if that
+        # holds in all cases.
+        class_template = f'''
+class SmolAgentsTool(smolagents.Tool):
+    def __init__(self):
+        super().__init__()
+        self.name = mcp_tool.name
+        self.description = mcp_tool.description
+        self.inputs = {{
+            k: {{
+                "type": v["type"],
+                # TODO: use google-docstring-parser to parse description of args and pass it here...
+                "description": v.get("description", ""),
+            }} for k, v in json_schema.items()
+        }}
+        self.output_type = "string"
+    
+    def forward(self, **{next(iter(json_schema))}: dict) -> str:
+        """
+        Forward method with dynamically generated parameters.
+        """
+        return func({next(iter(json_schema))}).content[0].text
+'''
+
+        # Create namespace and execute the class definition
+        namespace = {
+            "smolagents": smolagents,
+            "func": func,
+            "mcp_tool": mcp_tool,
+            "json_schema": json_schema,
+        }
+        exec(class_template, namespace)
+
+        # Get the class from namespace and instantiate it
+        tool = namespace["SmolAgentsTool"]()
+        return tool
 
 
 if __name__ == "__main__":
