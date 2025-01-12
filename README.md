@@ -48,8 +48,9 @@ with MCPAdapt(
 ```
 
 MCP Adapt supports Smolagents, [Pydantic.dev, Langchain, Llammaindex and more...]*.
-
 *coming soon.
+
+See our examples for more details on how to use.
 
 ## Contribute
 
