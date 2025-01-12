@@ -32,6 +32,10 @@ You can also add multiple framework comma separated if need.
 MCPAdapt adapt any MCP servers into tools that you can use right in your agentic workflow:
 
 ```python
+from mcp import StdioServerParameters
+from mcpadapt.core import MCPAdapt
+from mcpadapt.smolagents_adapter import SmolAgentsAdapter
+
 with MCPAdapt(
     # specify the command to run your favorite MCP server (support also smithery and co.)
     StdioServerParameters(command="uv", args=["run", "src/echo.py"]),
