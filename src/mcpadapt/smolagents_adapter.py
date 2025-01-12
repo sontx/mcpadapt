@@ -17,10 +17,6 @@ import smolagents
 from mcpadapt.core import ToolAdapter
 
 
-def snake_to_camel(s: str) -> str:
-    return "".join(word.capitalize() for word in s.split("_"))
-
-
 class SmolAgentsAdapter(ToolAdapter):
     """Adapter for the `smolagents` framework.
 
@@ -77,8 +73,9 @@ class SmolAgentsTool(smolagents.Tool):
 
 
 if __name__ == "__main__":
-    from mcpadapt.core import MCPAdapt
     from mcp import StdioServerParameters
+
+    from mcpadapt.core import MCPAdapt
 
     with MCPAdapt(
         StdioServerParameters(command="uv", args=["run", "src/echo.py"]),
