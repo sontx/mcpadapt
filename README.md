@@ -23,7 +23,7 @@ uv add mcpadapt[smolagents]
 pip install mcpadapt[smolagents]
 ```
 
-Framework supported at the moment: smolagents, langchain (soon).
+Framework supported at the moment: smolagents, langchain.
 
 You can also add multiple framework comma separated if needed. 
 
@@ -47,7 +47,7 @@ with MCPAdapt(
     ...
 ```
 
-MCP Adapt supports Smolagents, [Pydantic.dev, Langchain, Llammaindex and more...]*.
+MCP Adapt supports Smolagents, Langchain, [pydantic.dev, Llammaindex and more...]*.
 *coming soon.
 
 See our examples for more details on how to use.
@@ -83,7 +83,7 @@ class YourFrameworkAdapter(ToolAdapter):
 - [x] initial framework for anyone to start creating adapters
 - [x] support for smolagents
 - [ ] support for pydantic-ai
-- [ ] support for langchain
+- [x] support for langchain
 - [ ] support for llamaindex
 - [ ] support for swarm
 - [ ] support for crewAI?
