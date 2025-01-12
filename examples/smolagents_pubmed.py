@@ -2,6 +2,12 @@
 
 Note this is just a demo MCP server that I implemented for the purpose of this example.
 It only provide a single tool to search amongst pubmed papers abstracts.
+
+Note that this example needs the smolagents optional dependency to run.
+
+Usage:
+>>> uv add mcpadapt[smolagents]
+>>> uv run examples/smolagents_pubmed.py
 """
 
 import os
