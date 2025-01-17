@@ -88,6 +88,6 @@ class YourFrameworkAdapter(ToolAdapter):
 - [ ] support for swarm
 - [ ] support for crewAI?
 - [ ] support for remote MCP Servers via SSE
-- [ ] support for jupyter notebook
+- [x] support for jupyter notebook
 - [ ] add tests
 
