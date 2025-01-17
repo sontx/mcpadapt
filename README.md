@@ -46,11 +46,11 @@ Since mcpadapt is part of smolagents simple use tool collection from smolagents 
 
 ```python
 from mcp import StdioServerParameters
-from smolagents.tools import ToolsCollection
+from smolagents.tools import ToolCollection
 
 serverparams = StdioServerParameters(command="uv", args=["run", "src/echo.py"])
 
-with ToolsCollection.from_mcp(serverparams) as tools_collection:
+with ToolCollection.from_mcp(serverparams) as tool_collection:
     ... # enjoy your tools!
 ```
 
