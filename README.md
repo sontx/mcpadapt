@@ -12,15 +12,26 @@ Look at [glama.ai](https://glama.ai/mcp/servers) or [smithery.ai](https://smithe
 
 ## Installation Instructions
 
-Each agentic framework has its own set of optional dependencies to not clutter with useless dependencies.
+### Smolagents
+
+Smolagents 1.4.1 and above directly ships with mcpadapt integrated in their tool collections object.
+It means you can directly use it from smolagents:
+
+```bash
+uv add smolagents[mcp]
+```
+
+### Other Frameworks
+
+Each agent framework has its own set of optional dependencies to not clutter with useless dependencies.
 You choose the flavor you want by adding your framework in brackets in the installation command.
 
 ```bash
 # with uv
-uv add mcpadapt[smolagents]
+uv add mcpadapt[langchain]
 
 # or with pip
-pip install mcpadapt[smolagents]
+pip install mcpadapt[langchain]
 ```
 
 Framework supported at the moment: smolagents, langchain.
@@ -28,6 +39,22 @@ Framework supported at the moment: smolagents, langchain.
 You can also add multiple framework comma separated if needed. 
 
 ## Usage
+
+### Smolagents
+
+Since mcpadapt is part of smolagents simple use tool collection from smolagents like:
+
+```python
+from mcp import StdioServerParameters
+from smolagents.tools import ToolsCollection
+
+serverparams = StdioServerParameters(command="uv", args=["run", "src/echo.py"])
+
+with ToolsCollection.from_mcp(serverparams) as tools_collection:
+    ... # enjoy your tools!
+```
+
+### Other Frameworks
 
 MCPAdapt adapt any MCP servers into tools that you can use right in your agentic workflow:
 
