@@ -38,4 +38,8 @@ def echo_prompt(text: str) -> str:
 
 
 if __name__ == "__main__":
+    import sys
+
+    print("starting echo server", file=sys.stderr)
     mcp.run()
+    print("echo server ended", file=sys.stderr)
