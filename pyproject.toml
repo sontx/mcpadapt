@@ -19,6 +19,12 @@ langchain = [
     "langchain-anthropic>=0.3.1",
     "langgraph>=0.2.62",
 ]
+test = [
+    "pytest-asyncio>=0.25.2",
+    "pytest>=8.3.4",
+    "mcpadapt[langchain]",
+    "mcpadapt[smolagents]"
+]
 
 [tool.hatch.version]
 path = "src/mcpadapt/__init__.py"
@@ -31,8 +37,6 @@ build-backend = "hatchling.build"
 dev = [
     "jupyter>=1.1.1",
     "pre-commit>=4.0.1",
-    "pytest-asyncio>=0.25.2",
-    "pytest>=8.3.4",
     "ruff>=0.9.1",
 ]
 

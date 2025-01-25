@@ -1687,7 +1687,7 @@ wheels = [
 
 [[package]]
 name = "mcpadapt"
-version = "0.0.9"
+version = "0.0.10"
 source = { editable = "." }
 dependencies = [
     { name = "jsonref" },
@@ -1704,13 +1704,19 @@ langchain = [
 smolagents = [
     { name = "smolagents" },
 ]
+test = [
+    { name = "langchain" },
+    { name = "langchain-anthropic" },
+    { name = "langgraph" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "smolagents" },
+]
 
 [package.dev-dependencies]
 dev = [
     { name = "jupyter" },
     { name = "pre-commit" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
     { name = "ruff" },
 ]
 
@@ -1718,19 +1724,23 @@ dev = [
 requires-dist = [
     { name = "jsonref", specifier = ">=1.1.0" },
     { name = "langchain", marker = "extra == 'langchain'", specifier = ">=0.3.14" },
+    { name = "langchain", marker = "extra == 'test'", specifier = ">=0.3.14" },
     { name = "langchain-anthropic", marker = "extra == 'langchain'", specifier = ">=0.3.1" },
+    { name = "langchain-anthropic", marker = "extra == 'test'", specifier = ">=0.3.1" },
     { name = "langgraph", marker = "extra == 'langchain'", specifier = ">=0.2.62" },
+    { name = "langgraph", marker = "extra == 'test'", specifier = ">=0.2.62" },
     { name = "mcp", specifier = ">=1.2.0" },
+    { name = "pytest", marker = "extra == 'test'", specifier = ">=8.3.4" },
+    { name = "pytest-asyncio", marker = "extra == 'test'", specifier = ">=0.25.2" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
     { name = "smolagents", marker = "extra == 'smolagents'", specifier = ">=1.2.2" },
+    { name = "smolagents", marker = "extra == 'test'", specifier = ">=1.2.2" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "jupyter", specifier = ">=1.1.1" },
     { name = "pre-commit", specifier = ">=4.0.1" },
-    { name = "pytest", specifier = ">=8.3.4" },
-    { name = "pytest-asyncio", specifier = ">=0.25.2" },
     { name = "ruff", specifier = ">=0.9.1" },
 ]
 
