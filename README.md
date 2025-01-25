@@ -1,5 +1,12 @@
 # MCPAdapt
 
+![PyPI version](https://img.shields.io/pypi/v/mcpadapt)
+![Python versions](https://img.shields.io/pypi/pyversions/mcpadapt)
+![Tests](https://github.com/grll/mcpadapt/actions/workflows/ci.yml/badge.svg)
+![License](https://img.shields.io/github/license/grll/mcpadapt)
+![PyPI downloads](https://img.shields.io/pypi/dm/mcpadapt)
+![GitHub Repo stars](https://img.shields.io/github/stars/grll/mcpadapt)
+
 Unlock 650+ MCP servers tools in your favorite agentic framework.
 
 Model Context Protocol is an open-source protocol introduced by Anthropic which allows anyone to simply and quickly make tools and resources available as "MCP Servers".
@@ -116,5 +123,5 @@ class YourFrameworkAdapter(ToolAdapter):
 - [ ] support for crewAI?
 - [ ] support for remote MCP Servers via SSE
 - [x] support for jupyter notebook
-- [ ] add tests
+- [x] add tests
 

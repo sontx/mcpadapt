@@ -9,6 +9,11 @@ dependencies = [
     "jsonref>=1.1.0",
     "python-dotenv>=1.0.1",
 ]
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
 
 [project.optional-dependencies]
 smolagents = [
