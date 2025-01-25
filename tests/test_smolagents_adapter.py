@@ -24,6 +24,7 @@ def echo_server_script():
         '''
     )
 
+
 def test_basic_sync(echo_server_script):
     with MCPAdapt(
         StdioServerParameters(
