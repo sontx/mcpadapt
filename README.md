@@ -73,6 +73,7 @@ from mcpadapt.smolagents_adapter import SmolAgentsAdapter
 with MCPAdapt(
     # specify the command to run your favorite MCP server (support also smithery and co.)
     StdioServerParameters(command="uv", args=["run", "src/echo.py"]),
+    # or a dict of sse server parameters e.g. {"url": http://localhost:8000, "headers": ...}
 
     # specify the adapter you want to use to adapt MCP into your tool in this case smolagents.
     SmolAgentsAdapter(),
@@ -121,7 +122,7 @@ class YourFrameworkAdapter(ToolAdapter):
 - [ ] support for llamaindex
 - [ ] support for swarm
 - [ ] support for crewAI?
-- [ ] support for remote MCP Servers via SSE
+- [x] support for remote MCP Servers via SSE
 - [x] support for jupyter notebook
 - [x] add tests
 
