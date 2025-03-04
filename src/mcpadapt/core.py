@@ -14,6 +14,7 @@ from typing import Any, Callable, Coroutine
 import mcp
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
+from mcp.client.sse import sse_client
 
 
 class ToolAdapter(ABC):
@@ -69,7 +70,7 @@ class ToolAdapter(ABC):
 
 @asynccontextmanager
 async def mcptools(
-    serverparams: StdioServerParameters,
+    serverparams: StdioServerParameters | dict[str, Any],
 ) -> tuple[ClientSession, list[mcp.types.Tool]]:
     """Async context manager that yields tools from an MCP server.
 
@@ -77,7 +78,9 @@ async def mcptools(
     Use MCPAdapt instead if you need to use the tools synchronously.
 
     Args:
-        serverparams: Parameters to run the MCP server.
+        serverparams: Parameters passed to either the stdio client or sse client.
+            * if StdioServerParameters, run the MCP server using the stdio protocol.
+            * if dict, assume the dict corresponds to parameters to an sse MCP server.
 
     Yields:
         A list of tools available on the MCP server.
@@ -86,7 +89,16 @@ async def mcptools(
     >>> async with mcptools(StdioServerParameters(command="uv", args=["run", "src/echo.py"])) as (session, tools):
     >>>     print(tools)
     """
-    async with stdio_client(serverparams) as (read, write):
+    if isinstance(serverparams, StdioServerParameters):
+        client = stdio_client(serverparams)
+    elif isinstance(serverparams, dict):
+        client = sse_client(**serverparams)
+    else:
+        raise ValueError(
+            f"Invalid serverparams, expected StdioServerParameters or dict found `{type(serverparams)}`"
+        )
+
+    async with client as (read, write):
         async with ClientSession(read, write) as session:
             # Initialize the connection and get the tools from the mcp server
             await session.initialize()
@@ -119,16 +131,22 @@ class MCPAdapt:
     >>> # async usage
     >>> async with MCPAdapt(StdioServerParameters(command="uv", args=["run", "src/echo.py"]), SmolAgentAdapter()) as tools:
     >>>     print(tools)
+
+    >>> # async usage with sse
+    >>> async with MCPAdapt(dict(host="127.0.0.1", port=8000), SmolAgentAdapter()) as tools:
+    >>>     print(tools)
     """
 
-    def __init__(self, serverparams: StdioServerParameters, adapter: ToolAdapter):
+    def __init__(
+        self, serverparams: StdioServerParameters | dict[str, Any], adapter: ToolAdapter
+    ):
         # attributes we receive from the user.
         self.serverparams = serverparams
         self.adapter = adapter
 
         # session and tools get set by the async loop during initialization.
-        self.session: ClientSession = None
-        self.mcp_tools: list[mcp.types.Tool] = None
+        self.session: ClientSession | None = None
+        self.mcp_tools: list[mcp.types.Tool] | None = None
 
         # all attributes used to manage the async loop and separate thread.
         self.loop = asyncio.new_event_loop()
