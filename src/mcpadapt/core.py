@@ -133,7 +133,7 @@ class MCPAdapt:
     >>>     print(tools)
 
     >>> # async usage with sse
-    >>> async with MCPAdapt(dict(host="127.0.0.1", port=8000), SmolAgentAdapter()) as tools:
+    >>> async with MCPAdapt({"host": "127.0.0.1", "port": 8000}, SmolAgentAdapter()) as tools:
     >>>     print(tools)
     """
 
