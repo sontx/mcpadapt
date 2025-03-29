@@ -4,6 +4,14 @@ Example of using the Google GenAI adapter with MCPAdapt.
 This example shows how to use the Google GenAI adapter with MCP to call a airbnb tool.
 
 Note: this whole example also work seamlessly synchronously.
+
+Install mcpadapt with:
+
+```bash
+pip install mcpadapt[google-genai]
+# or
+uv pip install mcpadapt[google-genai]
+```
 """
 
 import os
