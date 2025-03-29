@@ -41,7 +41,7 @@ uv add mcpadapt[langchain]
 pip install mcpadapt[langchain]
 ```
 
-Framework supported at the moment: smolagents, langchain, crewAI.
+Framework supported at the moment: smolagents, langchain, crewAI, google-genai.
 
 You can also add multiple framework comma separated if needed. 
 
@@ -84,7 +84,7 @@ with MCPAdapt(
     ...
 ```
 
-MCP Adapt supports Smolagents, Langchain, CrewAI [pydantic.dev, Llammaindex and more...]*.
+MCP Adapt supports Smolagents, Langchain, CrewAI, google-genai [pydantic.dev, Llammaindex and more...]*.
 *coming soon.
 
 See our examples for more details on how to use.
