@@ -138,8 +138,22 @@ class MCPAdapt:
     """
 
     def __init__(
-        self, serverparams: StdioServerParameters | dict[str, Any], adapter: ToolAdapter
+        self,
+        serverparams: StdioServerParameters | dict[str, Any],
+        adapter: ToolAdapter,
+        connect_timeout: int = 30,
     ):
+        """
+        Manage the MCP server / client lifecycle and expose tools adapted with the adapter.
+
+        Args:
+            serverparams (StdioServerParameters | dict[str, Any]): MCP server parameters (stdio or sse).
+            adapter (ToolAdapter): Adapter to use to convert MCP tools call into agentic framework tools.
+            connect_timeout (int): Connection timeout in seconds to the mcp server (default is 30s).
+
+        Raises:
+            TimeoutError: When the connection to the mcp server time out.
+        """
         # attributes we receive from the user.
         self.serverparams = serverparams
         self.adapter = adapter
@@ -156,7 +170,11 @@ class MCPAdapt:
 
         # start the loop in a separate thread and wait till ready synchronously.
         self.thread.start()
-        self.ready.wait()
+        # check connection to mcp server is ready
+        if not self.ready.wait(timeout=connect_timeout):
+            raise TimeoutError(
+                f"Couldn't connect to the MCP server after {connect_timeout} seconds"
+            )
 
     def _run_loop(self):
         """Runs the event loop in a separate thread (for synchronous usage)."""
