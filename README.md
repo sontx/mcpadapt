@@ -1,11 +1,17 @@
 # MCPAdapt
 
+<p align="center">
+  <img src="https://github.com/grll/mcpadapt/blob/main/docs/assets/logo_transparent_cropped.png" alt="MCPAdapt Logo" width="200">
+</p>
+
 ![PyPI version](https://img.shields.io/pypi/v/mcpadapt)
 ![Python versions](https://img.shields.io/pypi/pyversions/mcpadapt)
 ![Tests](https://github.com/grll/mcpadapt/actions/workflows/ci.yml/badge.svg)
 ![License](https://img.shields.io/github/license/grll/mcpadapt)
 ![PyPI downloads](https://img.shields.io/pypi/dm/mcpadapt)
 ![GitHub Repo stars](https://img.shields.io/github/stars/grll/mcpadapt)
+
+For more context, guides and API references visit our new [documentation](https://grll.github.io/mcpadapt/).
 
 Unlock 650+ MCP servers tools in your favorite agentic framework.
 
