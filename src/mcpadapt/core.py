@@ -83,7 +83,7 @@ async def mcptools(
             * if dict, assume the dict corresponds to parameters to an sse MCP server.
 
     Yields:
-        A list of tools available on the MCP server.
+        A tuple of (MCP Client Session, list of MCP tools) available on the MCP server.
 
     Usage:
     >>> async with mcptools(StdioServerParameters(command="uv", args=["run", "src/echo.py"])) as (session, tools):
