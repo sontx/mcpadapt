@@ -149,7 +149,7 @@ class MCPAdapt:
         Manage the MCP server / client lifecycle and expose tools adapted with the adapter.
 
         Args:
-            serverparams (StdioServerParameters | dict[str, Any] | list[StdioServerParameters | dict[str, Any]):
+            serverparams (StdioServerParameters | dict[str, Any] | list[StdioServerParameters | dict[str, Any]]):
                 MCP server parameters (stdio or sse). Can be a list of you want to connect multiple MCPs at once.
             adapter (ToolAdapter): Adapter to use to convert MCP tools call into agentic framework tools.
             connect_timeout (int): Connection timeout in seconds to the mcp server (default is 30s).
