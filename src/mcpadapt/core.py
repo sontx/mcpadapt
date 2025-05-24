@@ -16,6 +16,7 @@ import mcp
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.sse import sse_client
 from mcp.client.stdio import stdio_client
+from mcp.client.streamable_http import streamablehttp_client
 
 
 class ToolAdapter(ABC):
@@ -95,7 +96,15 @@ async def mcptools(
     if isinstance(serverparams, StdioServerParameters):
         client = stdio_client(serverparams)
     elif isinstance(serverparams, dict):
-        client = sse_client(**serverparams)
+        transport = serverparams.pop("transport", "sse")
+        if transport == "sse":
+            client = sse_client(**serverparams)
+        elif transport == "streamable-http":
+            client = streamablehttp_client(**serverparams)
+        else:
+            raise ValueError(
+                f"Invalid transport, expected sse or streamable-http found `{transport}`"
+            )
     else:
         raise ValueError(
             f"Invalid serverparams, expected StdioServerParameters or dict found `{type(serverparams)}`"
@@ -107,7 +116,7 @@ async def mcptools(
     elif isinstance(client_session_timeout_seconds, timedelta):
         timeout = client_session_timeout_seconds
 
-    async with client as (read, write):
+    async with client as (read, write, *_):
         async with ClientSession(
             read,
             write,
@@ -147,12 +156,16 @@ class MCPAdapt:
     >>> print(adapter.tools()) # get latest tools
     >>> adapter.close()
 
+    >>> # sync usage with streamable-http
+    >>> with MCPAdapt({"url": "http://127.0.0.1:8000/mcp", "transport": "streamable-http"}), SmolAgentAdapter()) as tools:
+    >>>     print(tools)
+
     >>> # async usage
     >>> async with MCPAdapt(StdioServerParameters(command="uv", args=["run", "src/echo.py"]), SmolAgentAdapter()) as tools:
     >>>     print(tools)
 
     >>> # async usage with sse
-    >>> async with MCPAdapt({"host": "127.0.0.1", "port": 8000}, SmolAgentAdapter()) as tools:
+    >>> async with MCPAdapt({"url": "http://127.0.0.1:8000/sse"}, SmolAgentAdapter()) as tools:
     >>>     print(tools)
     """
 
