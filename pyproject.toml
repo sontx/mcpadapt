@@ -3,7 +3,7 @@ name = "mcpadapt"
 dynamic = ["version"]
 description = "Adapt MCP servers to many agentic framework."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 license = "MIT"
 authors = [{ name = "Guillaume Raille", email = "guillaume.raille@gmail.com" }]
 dependencies = [
