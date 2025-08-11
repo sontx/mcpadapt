@@ -96,7 +96,8 @@ class CrewAIAdapter(ToolAdapter):
                     ).items()
                     if k != "$defs"
                 }
-                self.description = f"Tool Name: {self.name}\nTool Arguments: {args_schema}\nTool Description: {self.description}"
+                args_schema["title"] = f"{self.name} Arguments Schema"
+                self.description = f"Tool Name: {self.name}\nTool Arguments (Json Schema): {args_schema}\nTool Description: {self.description}"
 
         return CrewAIMCPTool()
 
